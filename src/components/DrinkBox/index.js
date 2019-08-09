@@ -4,28 +4,50 @@ import {
   StyleSheet,
   View,
   Text,
+  Image
 } from 'react-native';
 
-const DrinkBox = ({
+const propTypes = {
+    strDrink: PropTypes.string,
+    strDrinkThumb: PropTypes.string,
+    idDrink: PropTypes.string
+}
+
+export const DrinkBox = ({
     strDrink,
     strDrinkThumb,
     idDrink
   }) => (
-    <View key={idDrink} style={{ borderWidth: 1, borderColor: 'black', borderRadius: 2 }}>
-      <View>
+    <View key={idDrink} style={styles.container}>
         <Image
-          style={{width: 50, height: 50}}
+          style={styles.imageStyles}
           source={{uri: strDrinkThumb}}
         />
-      </View>
-      <Text>{strDrink}</Text>
+      <Text style={styles.textStyles}>{strDrink}</Text>
     </View>
 )
 
-Home.propTypes = propTypes
+DrinkBox.propTypes = propTypes
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    backgroundColor: 'white',
+    borderRadius: 15, 
+    margin: 5,
+    marginHorizontal: 25,
+    padding: 20,
+    flexDirection: 'row',
+    alignItems: 'center'
+  },
+  imageStyles: {
+    width: 75,
+    height: 75,
+    borderRadius: 50
+  },
+  textStyles: {
+    flex: 1,
+    marginLeft: 20,
+    fontSize: 15,
+    fontWeight: 'bold'
   }
 });
