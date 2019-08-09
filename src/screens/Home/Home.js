@@ -2,29 +2,29 @@ import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
-  View,
   FlatList,
   StatusBar,
   ActivityIndicator
 } from 'react-native';
 import { DrinkBox } from '../../components/DrinkBox'
+import { ErrorLabel } from '../../components/ErrorLabel'
 
 export default function Home (props) {
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <StatusBar
         barStyle="dark-content"
         backgroundColor="#6a51ae"
       />
-      <SafeAreaView>
+      {props.cocktailsError && <ErrorLabel getCocktails={props.getCocktails} />}
       {
-        props.cocktailsPending ? <ActivityIndicator size="large" color="white" /> : <FlatList
+        props.cocktailsPending ? <ActivityIndicator size='large' color='white' /> : <FlatList
           data={props.cocktailsData}
-          renderItem={({item}) => <DrinkBox strDrink={item.strDrink} strDrinkThumb={item.strDrinkThumb} idDrink={item.idDrink}/>}
+          keyExtractor={(item) => item.idDrink }
+          renderItem={({item}) => <DrinkBox key={item.id} strDrink={item.strDrink} strDrinkThumb={item.strDrinkThumb} idDrink={item.idDrink}/>}
         />
       }
       </SafeAreaView>
-    </View>
   )
 }
 
