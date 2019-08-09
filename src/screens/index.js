@@ -3,11 +3,9 @@ import {
     createAppContainer
   } from 'react-navigation';
 import HomeScreen from './Home'
-import TestsScreen from './Tests'
 
 const MainNavigator = createStackNavigator({
   Home: HomeScreen,
-  Tests: TestsScreen 
 }, {
   navigationOptions: {
     headerTintColor: 'black',
